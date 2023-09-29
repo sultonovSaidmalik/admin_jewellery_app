@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "827027670946",
+    "firebase_url": "https://jewellery-604f7-default-rtdb.firebaseio.com",
+    "project_id": "jewellery-604f7",
+    "storage_bucket": "jewellery-604f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827027670946:android:b9e81d1d56b031653b14fb",
+        "android_client_info": {
+          "package_name": "com.example.jewellery_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827027670946-322edtt4fqq8thcj2ai4q090thauputs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jewellery_app",
+            "certificate_hash": "4be5063caf0620ce940e43819a6a2821d3a4bb7c"
+          }
+        },
+        {
+          "client_id": "827027670946-i55fpdkc0thj8d334sa3kcgmophobadb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqRkOA0ZoBX5ZkMmgMbx8JSyTiakQVPQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827027670946-i55fpdkc0thj8d334sa3kcgmophobadb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "827027670946-bhda8hdll49rf8aupbcuvktcmlihr4fd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jewelleryApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827027670946:android:2ccf8cd4d4cf56933b14fb",
+        "android_client_info": {
+          "package_name": "com.saidmalik.admin_jewellery_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827027670946-i55fpdkc0thj8d334sa3kcgmophobadb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqRkOA0ZoBX5ZkMmgMbx8JSyTiakQVPQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827027670946-i55fpdkc0thj8d334sa3kcgmophobadb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "827027670946-bhda8hdll49rf8aupbcuvktcmlihr4fd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jewelleryApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

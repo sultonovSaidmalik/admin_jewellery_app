@@ -1,4 +1,4 @@
-import 'package:admin_jewellery_app/src/common/text_style.dart';
+import 'package:admin_jewellery_app/src/common/styles/text_style.dart';
 import 'package:flutter/material.dart';
 import '../create_screen/components/app_bar_text.dart';
 
