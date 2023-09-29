@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../../detail_screen/detail_screen.dart';
 import 'product_description.dart';
 import 'widgets_photos.dart';
 
@@ -12,16 +13,26 @@ class AdminProductWidgets extends StatelessWidget {
       flex: 15,
       child: ListView.separated(
         itemBuilder: (context, index) {
-          return ProductWidget(
-            onPress: (){},
-            widget: const Row(
-              children: [
-                /// Photo Jewellery
-                WidgetsPhotos(),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DetailScreen(),
+                ),
+              );
+            },
+            child: ProductWidget(
+              onPress: (){},
+              widget: const Row(
+                children: [
+                  /// Photo Jewellery
+                  WidgetsPhotos(),
 
-                /// Description
-                WidgetsProductDescription(),
-              ],
+                  /// Description
+                  WidgetsProductDescription(),
+                ],
+              ),
             ),
           );
         },

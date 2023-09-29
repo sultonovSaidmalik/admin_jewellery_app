@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../common/text_style.dart';
-import 'button_add_to_basket.dart';
 class WidgetsProductDescription extends StatelessWidget {
   const WidgetsProductDescription({super.key});
 
@@ -21,14 +20,6 @@ class WidgetsProductDescription extends StatelessWidget {
                    "2,99 Carat Diamond Ring",
                    style: Styles.w400,
                 ),
-                // /// Icon more
-                // GestureDetector(
-                //   onTap: () {},
-                //   child: const Icon(
-                //     Icons.more_vert,
-                //     color: Colors.white,
-                //   ),
-                // ),
               ],
             ),
 

@@ -28,10 +28,15 @@ class ProductScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateScreens(),));
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const CreateScreens(),
+          ));
         },
         backgroundColor: Colors.grey,
-        child: const Icon(Icons.add , color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
