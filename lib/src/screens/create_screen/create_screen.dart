@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:admin_jewellery_app/src/common/styles/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../common/utils/utils.dart';
 import '../create_screen/components/app_bar_text.dart';
 
 class CreateScreens extends StatefulWidget {
@@ -10,13 +14,77 @@ class CreateScreens extends StatefulWidget {
 }
 
 class _CreateScreensState extends State<CreateScreens> {
-  List<String> options = [
-   "Ring", "Necklace" , "Bracelet"
-  ];
+
+  File? _imageOne;
+  File? _imageTwo;
+  File? _imageThree;
+
+  List<String> options = ["Ring", "Necklace", "Bracelet"];
   String dropdownValue = 'Ring';
-  List<String> gender = [
-    "Man", "Women"];
+  List<String> gender = ["Man", "Women"];
   String dropdownGender = 'Man';
+
+
+
+  void _showPicker(BuildContext context, int index) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text("Pick Photo"),
+                onTap: () async {
+                  File? file = await AppUtils.imgFromGallery();
+                  if(file == null) {
+                    if(context.mounted) {
+                      Navigator.pop(context);
+                    }
+                  }else {
+                    if(index == 1) {
+                      _imageOne = file;
+                    }else if(index == 2) {
+                      _imageTwo = file;
+                    }else if(index == 3) {
+                      _imageThree = file;
+                    }
+                  }
+                  if(context.mounted) {
+                    Navigator.of(context).pop();
+                  }
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text("Take Photo"),
+                onTap: () async{
+                  File? file = await AppUtils.imgFromCamera();
+                  if(file == null) {
+                    if(context.mounted) {
+                      Navigator.pop(context);
+                    }
+                  }else {
+                    if(index == 1) {
+                      _imageOne = file;
+                    }else if(index == 2) {
+                      _imageTwo = file;
+                    }else if(index == 3) {
+                      _imageThree = file;
+                    }
+                  }
+                  if(context.mounted) {
+                    Navigator.of(context).pop();
+                  }
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +117,167 @@ class _CreateScreensState extends State<CreateScreens> {
                 const SizedBox(height: 10),
 
                 /// Add Photos
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      height: MediaQuery.sizeOf(context).width * 0.75,
-                      color: Colors.grey,
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 50,
-                      )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        _showPicker(context, 1);
+                        setState(() {
+
+                        });
+                      },
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width / 2.3,
+                        height: MediaQuery.sizeOf(context).width * 1.03,
+                        color: Colors.grey,
+                        child: _imageOne == null
+                            ? const Center(
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                            color: Colors.white,
+                          ),
+                        )
+                            : Stack(
+                          children: [
+                            Image.file(
+                              _imageOne!,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              color: Colors.black12,
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _imageOne = null;
+                                      });
+                                    },
+                                    icon: const Icon(Icons.highlight_remove),
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _showPicker(context, 2);
+                            setState(() {
+
+                            });
+                          },
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width / 2.3,
+                            height: MediaQuery.sizeOf(context).width * 0.5,
+                            color: Colors.grey,
+                            child: _imageTwo == null
+                                ? const Center(
+                                    child: Icon(
+                                      Icons.add_a_photo,
+                                      size: 50,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : Stack(
+                                    children: [
+                                      Image.file(
+                                        _imageTwo!,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        color: Colors.black12,
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _imageTwo = null;
+                                                });
+                                              },
+                                              icon: const Icon(Icons.highlight_remove),
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            _showPicker(context , 3);
+                            setState(() {
+
+                            });
+                          },
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width / 2.3,
+                            height: MediaQuery.sizeOf(context).width * 0.5,
+                            color: Colors.grey,
+                            child: _imageThree == null
+                                ? const Center(
+                                    child: Icon(
+                                      Icons.add_a_photo,
+                                      size: 50,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : Stack(
+                                    children: [
+                                      Image.file(
+                                        _imageThree!,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        color: Colors.black12,
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _imageThree = null;
+                                                });
+                                              },
+                                              icon: const Icon(Icons.highlight_remove),
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
+
                 const SizedBox(height: 10),
 
                 /// TextField Name
@@ -121,6 +338,7 @@ class _CreateScreensState extends State<CreateScreens> {
                   ),
                 ),
                 const SizedBox(height: 10),
+
                 /// DropdownButton
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -130,9 +348,9 @@ class _CreateScreensState extends State<CreateScreens> {
                       height: 45,
                       width: 120,
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(color: Colors.grey, width: 1)
-                      ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          border: Border.all(color: Colors.grey, width: 1)),
                       child: Center(
                         child: DropdownButton<String>(
                           underline: const SizedBox(),
@@ -155,7 +373,8 @@ class _CreateScreensState extends State<CreateScreens> {
                               );
                             }).toList();
                           },
-                          items: options.map<DropdownMenuItem<String>>((String value) {
+                          items: options
+                              .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -164,14 +383,15 @@ class _CreateScreensState extends State<CreateScreens> {
                         ),
                       ),
                     ),
+
                     /// DropdownButton Gender
                     Container(
                       height: 45,
                       width: 120,
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(color: Colors.grey, width: 1)
-                      ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          border: Border.all(color: Colors.grey, width: 1)),
                       child: Center(
                         child: DropdownButton<String>(
                           underline: const SizedBox(),
@@ -194,7 +414,8 @@ class _CreateScreensState extends State<CreateScreens> {
                               );
                             }).toList();
                           },
-                          items: gender.map<DropdownMenuItem<String>>((String value) {
+                          items: gender
+                              .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
