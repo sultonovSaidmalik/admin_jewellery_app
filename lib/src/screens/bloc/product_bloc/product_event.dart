@@ -12,9 +12,22 @@ class ProductGetDataEvent extends ProductEvent {
 }
 
 class ProductCreateEvent extends ProductEvent {
+  final List<File> files;
+  final String name;
+  final String description;
+  final String type;
+  final String genderType;
+  final num price;
 
-  const ProductCreateEvent();
+  const ProductCreateEvent( {
+    required this.name,
+    required this.description,
+    required this.files,
+    required this.price,
+    required this.type,
+    required this.genderType,
+  });
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [name, description, files, price, type, genderType];
 }

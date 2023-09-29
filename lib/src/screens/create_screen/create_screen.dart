@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:admin_jewellery_app/src/common/styles/text_style.dart';
+import 'package:admin_jewellery_app/src/screens/bloc/product_bloc/product_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/utils/utils.dart';
 import '../create_screen/components/app_bar_text.dart';
+
+part './mixin/create_mixin.dart';
 
 class CreateScreens extends StatefulWidget {
   const CreateScreens({super.key});
@@ -13,79 +16,7 @@ class CreateScreens extends StatefulWidget {
   State<CreateScreens> createState() => _CreateScreensState();
 }
 
-class _CreateScreensState extends State<CreateScreens> {
-
-  File? _imageOne;
-  File? _imageTwo;
-  File? _imageThree;
-
-  List<String> options = ["Ring", "Necklace", "Bracelet"];
-  String dropdownValue = 'Ring';
-  List<String> gender = ["Man", "Women"];
-  String dropdownGender = 'Man';
-
-
-
-  void _showPicker(BuildContext context, int index) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: Wrap(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.photo_library),
-                title: const Text("Pick Photo"),
-                onTap: () async {
-                  File? file = await AppUtils.imgFromGallery();
-                  if(file == null) {
-                    if(context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  }else {
-                    if(index == 1) {
-                      _imageOne = file;
-                    }else if(index == 2) {
-                      _imageTwo = file;
-                    }else if(index == 3) {
-                      _imageThree = file;
-                    }
-                  }
-                  if(context.mounted) {
-                    Navigator.of(context).pop();
-                  }
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.photo_library),
-                title: const Text("Take Photo"),
-                onTap: () async{
-                  File? file = await AppUtils.imgFromCamera();
-                  if(file == null) {
-                    if(context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  }else {
-                    if(index == 1) {
-                      _imageOne = file;
-                    }else if(index == 2) {
-                      _imageTwo = file;
-                    }else if(index == 3) {
-                      _imageThree = file;
-                    }
-                  }
-                  if(context.mounted) {
-                    Navigator.of(context).pop();
-                  }
-                },
-              )
-            ],
-          ),
-        );
-      },
-    );
-  }
-
+class _CreateScreensState extends State<CreateScreens> with CreateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,9 +54,7 @@ class _CreateScreensState extends State<CreateScreens> {
                     GestureDetector(
                       onTap: () {
                         _showPicker(context, 1);
-                        setState(() {
-
-                        });
+                        setState(() {});
                       },
                       child: Container(
                         width: MediaQuery.sizeOf(context).width / 2.3,
@@ -133,41 +62,43 @@ class _CreateScreensState extends State<CreateScreens> {
                         color: Colors.grey,
                         child: _imageOne == null
                             ? const Center(
-                          child: Icon(
-                            Icons.add_a_photo,
-                            size: 50,
-                            color: Colors.white,
-                          ),
-                        )
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  size: 50,
+                                  color: Colors.white,
+                                ),
+                              )
                             : Stack(
-                          children: [
-                            Image.file(
-                              _imageOne!,
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: double.infinity,
-                              color: Colors.black12,
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _imageOne = null;
-                                      });
-                                    },
-                                    icon: const Icon(Icons.highlight_remove),
-                                    color: Colors.white,
+                                  Image.file(
+                                    _imageOne!,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    color: Colors.black12,
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              _imageOne = null;
+                                            });
+                                          },
+                                          icon: const Icon(
+                                              Icons.highlight_remove),
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                     Column(
@@ -175,9 +106,7 @@ class _CreateScreensState extends State<CreateScreens> {
                         GestureDetector(
                           onTap: () {
                             _showPicker(context, 2);
-                            setState(() {
-
-                            });
+                            setState(() {});
                           },
                           child: Container(
                             width: MediaQuery.sizeOf(context).width / 2.3,
@@ -204,7 +133,8 @@ class _CreateScreensState extends State<CreateScreens> {
                                         color: Colors.black12,
                                         padding: const EdgeInsets.all(10),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
                                           children: [
                                             IconButton(
                                               onPressed: () {
@@ -212,7 +142,8 @@ class _CreateScreensState extends State<CreateScreens> {
                                                   _imageTwo = null;
                                                 });
                                               },
-                                              icon: const Icon(Icons.highlight_remove),
+                                              icon: const Icon(
+                                                  Icons.highlight_remove),
                                               color: Colors.white,
                                             ),
                                           ],
@@ -225,10 +156,8 @@ class _CreateScreensState extends State<CreateScreens> {
                         const SizedBox(height: 10),
                         GestureDetector(
                           onTap: () {
-                            _showPicker(context , 3);
-                            setState(() {
-
-                            });
+                            _showPicker(context, 3);
+                            setState(() {});
                           },
                           child: Container(
                             width: MediaQuery.sizeOf(context).width / 2.3,
@@ -255,7 +184,8 @@ class _CreateScreensState extends State<CreateScreens> {
                                         color: Colors.black12,
                                         padding: const EdgeInsets.all(10),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
                                           children: [
                                             IconButton(
                                               onPressed: () {
@@ -263,7 +193,8 @@ class _CreateScreensState extends State<CreateScreens> {
                                                   _imageThree = null;
                                                 });
                                               },
-                                              icon: const Icon(Icons.highlight_remove),
+                                              icon: const Icon(
+                                                  Icons.highlight_remove),
                                               color: Colors.white,
                                             ),
                                           ],
@@ -281,8 +212,9 @@ class _CreateScreensState extends State<CreateScreens> {
                 const SizedBox(height: 10),
 
                 /// TextField Name
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
                     isDense: true,
                     hintText: "Name",
                     hintStyle: Styles.textField,
@@ -292,7 +224,7 @@ class _CreateScreensState extends State<CreateScreens> {
                       ),
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
@@ -300,9 +232,10 @@ class _CreateScreensState extends State<CreateScreens> {
                 const SizedBox(height: 10),
 
                 /// TextField Price
-                const TextField(
+                 TextField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  controller: priceController,
+                  decoration: const InputDecoration(
                     isDense: true,
                     hintText: "Price",
                     hintStyle: Styles.textField,
@@ -312,7 +245,7 @@ class _CreateScreensState extends State<CreateScreens> {
                       ),
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
@@ -320,9 +253,10 @@ class _CreateScreensState extends State<CreateScreens> {
                 const SizedBox(height: 10),
 
                 /// TextField Description
-                const TextField(
+                 TextField(
                   maxLines: 5,
-                  decoration: InputDecoration(
+                  controller: descriptionController,
+                  decoration: const InputDecoration(
                     isDense: true,
                     hintText: "Description",
                     hintStyle: Styles.textField,
@@ -332,7 +266,7 @@ class _CreateScreensState extends State<CreateScreens> {
                       ),
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
@@ -425,6 +359,10 @@ class _CreateScreensState extends State<CreateScreens> {
                       ),
                     ),
                   ],
+                ),
+                TextButton(
+                  onPressed: _createProduct,
+                  child: const Text("Create"),
                 ),
               ],
             ),

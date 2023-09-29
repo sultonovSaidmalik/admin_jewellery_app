@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../common/styles/text_style.dart';
 class WidgetsProductDescription extends StatelessWidget {
-  const WidgetsProductDescription({super.key});
+  final String name;
+  final String description;
+  final num price;
+  const WidgetsProductDescription({super.key, required this.name, required this.description, required this.price});
 
   @override
   Widget build(BuildContext context) {
-    return  const Expanded(
+    return   Expanded(
       flex: 5,
       child: Padding(
         padding: EdgeInsets.only(left: 15),
@@ -17,7 +20,7 @@ class WidgetsProductDescription extends StatelessWidget {
               children: [
                 /// Uzuk name
                  Text(
-                   "2,99 Carat Diamond Ring",
+                   "name",
                    style: Styles.w400,
                 ),
               ],
@@ -25,7 +28,7 @@ class WidgetsProductDescription extends StatelessWidget {
 
             /// razmer
             Text(
-              "Boyut: 3.5",
+              description,
                style: Styles.w300,
             ),
             SizedBox(height: 15),
@@ -34,7 +37,7 @@ class WidgetsProductDescription extends StatelessWidget {
               children: [
                 /// Price
                 Text(
-                  "10.750 ₺",
+                  "$price \$",
                   style: Styles.w700_20,
                 ),
 

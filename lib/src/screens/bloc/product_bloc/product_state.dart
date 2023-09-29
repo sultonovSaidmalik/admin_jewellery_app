@@ -1,12 +1,9 @@
 part of 'product_bloc.dart';
 
-enum ProductStatus { initial, create }
+enum ProductStatus { initial, successCreate, errorCreate, successData}
 
-abstract class ProductState extends Equatable {
-  const ProductState();
-}
 
-class ProductMainState extends ProductState {
+class ProductMainState extends Equatable {
   final ProductStatus status;
   final List<Product> products;
 

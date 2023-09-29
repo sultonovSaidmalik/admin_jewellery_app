@@ -11,7 +11,7 @@ class AdminJewelleryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductBloc(repository: ProductRepository()),
+      create: (context) => ProductBloc(repository: ProductRepository())..add(const ProductGetDataEvent()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(useMaterial3: true),
