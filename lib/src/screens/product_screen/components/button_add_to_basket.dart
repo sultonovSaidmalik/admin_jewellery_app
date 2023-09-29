@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/text_style.dart';
+import '../../../common/styles/text_style.dart';
 class ButtonAddToBasket extends StatelessWidget {
   final void Function()? onTap;
   const ButtonAddToBasket({super.key , required this.onTap});
