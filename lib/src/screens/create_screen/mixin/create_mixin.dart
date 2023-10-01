@@ -14,7 +14,13 @@ mixin CreateMixin on State<CreateScreens> {
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  void _createProduct() {
+  void _createProduct(BuildContext context) {
+    if(nameController.text.isEmpty ) return AppUtils.msg(context, "Maxsultni nomi kiritilmadi");
+    if(descriptionController.text.isEmpty) return AppUtils.msg(context, "Maxsultni tavsifi kiritilmadi");
+    if(priceController.text.isEmpty) return AppUtils.msg(context, "Maxsultni summasi kiritilmadi");
+    if(_imageOne == null) return AppUtils.msg(context, "Maxsultni Birinchi rasimi kiritilmadi");
+    if(_imageTwo == null) return AppUtils.msg(context, "Maxsultni Ikkinchi rasimi kiritilmadi");
+    if(_imageThree == null) return AppUtils.msg(context, "Maxsultni Uchinchi rasimi kiritilmadi");
     context.read<ProductBloc>().add(ProductCreateEvent(
           name: nameController.text.trim(),
           description: descriptionController.text.trim(),
@@ -23,6 +29,8 @@ mixin CreateMixin on State<CreateScreens> {
           type: dropdownValue,
           genderType: dropdownGender,
         ));
+    print("Data");
+    Navigator.pop(context);
   }
 
   void _showPicker(BuildContext context, int index) {

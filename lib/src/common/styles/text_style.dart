@@ -10,6 +10,13 @@ class Styles {
     fontWeight: FontWeight.w700,
     height: 0,
   );
+  static const TextStyle w700_28 = TextStyle(
+    color: Colors.white,
+    fontSize: 28,
+    fontFamily: 'SF Pro',
+    fontWeight: FontWeight.w700,
+    height: 0,
+  );
 
   static const TextStyle w700_16 = TextStyle(
     color: Colors.white,
@@ -24,6 +31,20 @@ class Styles {
     color: Colors.white,
     fontSize: 15,
     fontFamily: _sf_pro,
+    fontWeight: FontWeight.w400,
+    height: 0,
+  );
+  static const TextStyle w400_20 = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontFamily: 'SF Pro',
+    fontWeight: FontWeight.w400,
+    height: 0,
+  );
+  static const TextStyle create = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontFamily: 'SF Pro',
     fontWeight: FontWeight.w400,
     height: 0,
   );
@@ -70,6 +91,13 @@ class Styles {
     color: Color(0xFFD9D9D9),
     fontSize: 13,
     fontFamily: _sf_pro,
+    fontWeight: FontWeight.w500,
+    height: 0,
+  );
+  static const TextStyle w500_19 = TextStyle(
+    color: Colors.white,
+    fontSize: 19,
+    fontFamily: 'SF Pro',
     fontWeight: FontWeight.w500,
     height: 0,
   );

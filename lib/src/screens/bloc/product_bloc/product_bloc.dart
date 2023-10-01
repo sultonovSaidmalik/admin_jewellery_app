@@ -1,10 +1,7 @@
-import 'dart:async';
 import 'dart:io';
-
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../../common/models/product_model.dart';
 import '../../../common/repository/repository.dart';
 
