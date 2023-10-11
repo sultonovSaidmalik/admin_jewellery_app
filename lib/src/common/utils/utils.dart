@@ -1,14 +1,15 @@
+import 'platform/stub.dart'
+    if (dart.library.io) 'platform/io.dart'
+    if (dart.library.js) 'platform/web.dart';
 
-
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppUtils {
   static final ImagePicker _picker = ImagePicker();
-  AppUtils._();
 
+  AppUtils._();
 
   static void msg(BuildContext context, String message,
       {Color color = Colors.green}) {
@@ -20,15 +21,19 @@ class AppUtils {
     );
   }
 
-  static Future<File?> imgFromGallery() async {
-    XFile? image = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    if(image == null) return null;
-    return File(image!.path);
-  }
+  static Future<Uint8List?> imgFromGallery() => PickerUtils.imgFromGallery();
 
-  static Future<File?> imgFromCamera() async {
-    XFile? image = await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    if(image == null) return null;
-    return File(image!.path);
+  static Future<Uint8List?> imgFromCamera() async {
+    if (kIsWeb) {
+      return null;
+    } else {
+      XFile? image = await _picker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 50,
+      );
+
+      if (image == null) return null;
+      return await image.readAsBytes();
+    }
   }
 }

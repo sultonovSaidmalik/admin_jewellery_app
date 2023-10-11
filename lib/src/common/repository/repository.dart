@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import '../models/product_model.dart';
 
@@ -9,5 +9,5 @@ abstract class Repository {
 
   Future<bool> storeProduct(Product product);
 
-  Future<String> storePicture(File file);
+  Future<String> storePicture(Uint8List file);
 }

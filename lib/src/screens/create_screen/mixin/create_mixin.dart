@@ -1,9 +1,9 @@
 part of '../create_screen.dart';
 
 mixin CreateMixin on State<CreateScreens> {
-  File? _imageOne;
-  File? _imageTwo;
-  File? _imageThree;
+  Uint8List? _imageOne;
+  Uint8List? _imageTwo;
+  Uint8List? _imageThree;
 
   List<String> options = ["Ring", "Necklace", "Bracelet"];
   String dropdownValue = 'Ring';
@@ -44,7 +44,7 @@ mixin CreateMixin on State<CreateScreens> {
                 leading: const Icon(Icons.photo_library),
                 title: const Text("Pick Photo"),
                 onTap: () async {
-                  File? file = await AppUtils.imgFromGallery();
+                  Uint8List? file = await AppUtils.imgFromGallery();
                   if (file == null) {
                     if (context.mounted) {
                       Navigator.pop(context);
@@ -67,7 +67,7 @@ mixin CreateMixin on State<CreateScreens> {
                 leading: const Icon(Icons.photo_library),
                 title: const Text("Take Photo"),
                 onTap: () async {
-                  File? file = await AppUtils.imgFromCamera();
+                  Uint8List? file = await AppUtils.imgFromCamera();
                   if (file == null) {
                     if (context.mounted) {
                       Navigator.pop(context);

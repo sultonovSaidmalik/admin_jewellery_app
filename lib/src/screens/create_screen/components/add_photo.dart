@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -9,9 +9,9 @@ class AddPhotos extends StatefulWidget {
   final void Function() closeOne;
   final void Function() closeTwo;
   final void Function() closeThree;
-  final File? imageOne;
-  final File? imageTwo;
-  final File? imageThree;
+  final Uint8List? imageOne;
+  final Uint8List? imageTwo;
+  final Uint8List? imageThree;
 
   const AddPhotos({
     super.key,
@@ -61,7 +61,7 @@ class _AddPhotosState extends State<AddPhotos> {
                       )
                     : Stack(
                         children: [
-                          Image.file(
+                          Image.memory(
                             widget.imageTwo!,
                             width: double.infinity,
                             height: double.infinity,
@@ -86,7 +86,7 @@ class _AddPhotosState extends State<AddPhotos> {
                       ),
               ),
             ),
-            const SizedBox(width: 10),
+            const Spacer(),
             GestureDetector(
               onTap: widget.presserThree,
               child: Container(
@@ -110,7 +110,7 @@ class _AddPhotosState extends State<AddPhotos> {
                       )
                     : Stack(
                         children: [
-                          Image.file(
+                          Image.memory(
                             widget.imageThree!,
                             width: double.infinity,
                             height: double.infinity,
@@ -161,7 +161,7 @@ class _AddPhotosState extends State<AddPhotos> {
             )
                 : Stack(
               children: [
-                Image.file(
+                Image.memory(
                   widget.imageOne!,
                   width: double.infinity,
                   height: double.infinity,

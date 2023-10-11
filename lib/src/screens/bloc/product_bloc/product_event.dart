@@ -12,7 +12,7 @@ class ProductGetDataEvent extends ProductEvent {
 }
 
 class ProductCreateEvent extends ProductEvent {
-  final List<File> files;
+  final List<Uint8List> files;
   final String name;
   final String description;
   final String type;

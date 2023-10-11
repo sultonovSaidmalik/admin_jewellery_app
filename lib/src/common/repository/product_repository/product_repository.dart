@@ -1,6 +1,6 @@
 
 import 'dart:convert';
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:admin_jewellery_app/src/common/models/product_model.dart';
 import 'package:admin_jewellery_app/src/common/repository/repository.dart';
@@ -42,9 +42,9 @@ class ProductRepository extends Repository {
   }
 
   @override
-  Future<String> storePicture(File file) async {
-    final image = _st.ref(Folder.images.name).child("image_${DateTime.now().toIso8601String()}${file.path.substring(file.path.lastIndexOf("."))}" );
-    final task = image.putFile(file);
+  Future<String> storePicture(Uint8List file) async {
+    final image = _st.ref(Folder.images.name).child("image_${DateTime.now().toIso8601String()}.jpg" );
+    final task = image.putData(file);
     await task.whenComplete(() {});
     return image.getDownloadURL();
   }
