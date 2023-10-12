@@ -15,15 +15,15 @@ mixin ProductMixin on State<ProductScreen> {
       AppUtils.msg(context, state.message ?? "", color: Colors.red);
     }
     if (state.status == ProductStatus.successDelete) {
-      AppUtils.msg(context, "");
+      AppUtils.msg(context, "Product O'chirildi");
       context.read<ProductBloc>().add(const ProductGetDataEvent());
     }
     if (state.status == ProductStatus.successCreate) {
-      AppUtils.msg(context, "");
+      AppUtils.msg(context, "Product Qo'shildi");
       context.read<ProductBloc>().add(const ProductGetDataEvent());
     }
     if (state.status == ProductStatus.successUpdate) {
-      AppUtils.msg(context, "");
+      AppUtils.msg(context, "Product Yangilandi");
       context.read<ProductBloc>().add(const ProductGetDataEvent());
     }
   }

@@ -41,6 +41,20 @@ class ProductRepository extends Repository {
     }
   }
 
+  @override
+  Future<bool> updateProduct(Product product) async {
+    try {
+      final folder =
+      _storage.child(Folder.products.name).child(product.productId!);
+      await folder.update(product.toJson());
+      return true;
+    } catch (e, s) {
+      print(e);
+      print(s);
+      return false;
+    }
+  }
+
 
 
 

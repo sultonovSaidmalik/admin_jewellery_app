@@ -9,7 +9,7 @@ import 'components/admin_widgets_list_view.dart';
 part './mixin/product_mixin.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key});
+  const ProductScreen({super.key,});
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -22,7 +22,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductMixin {
       listener: listener,
       child: Scaffold(
         backgroundColor: const Color(0xFF000000),
-        body: const SafeArea(
+        body:  const SafeArea(
           child: Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Column(

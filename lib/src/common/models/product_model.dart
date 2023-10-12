@@ -54,5 +54,29 @@ class Product {
     return 'Product{productId: $productId, productName: $productName, productDescription: $productDescription, productPrice: $productPrice, productType: $productType, createdAt: $createdAt, updatedAt: $updatedAt, likedProduct: $likedProduct}';
   }
 
-
+  Product copyWith({
+    String? productId,
+    String? productName,
+    String? productDescription,
+    num? productPrice,
+    String? productType,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    bool? likedProduct,
+    List<String>? images,
+    String? genderType,
+  }) {
+    return Product(
+      productId: productId ?? this.productId,
+      productName: productName ?? this.productName,
+      productDescription: productDescription ?? this.productDescription,
+      productPrice: productPrice ?? this.productPrice,
+      productType: productType ?? this.productType,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      likedProduct: likedProduct ?? this.likedProduct,
+      images: images ?? this.images,
+      genderType: genderType ?? this.genderType,
+    );
+  }
 }

@@ -12,4 +12,6 @@ abstract class Repository {
   Future<String> storePicture(Uint8List file);
 
   Future<bool> deleteProduct(String productId);
+
+  Future<bool> updateProduct(Product product);
 }

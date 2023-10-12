@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../../../common/models/product_model.dart';
 import '../../bloc/product_bloc/product_bloc.dart';
 import '../../detail_screen/detail_screen.dart';
+import '../../update_screen/update_screen.dart';
 import 'product_description.dart';
 import 'widgets_photos.dart';
 
@@ -51,12 +53,12 @@ class AdminProductWidgets extends StatelessWidget {
                         ProductDeleteEvent(productId: product.productId ?? ""));
                   },
                   updatePress: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => UpdateScreen(),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdateScreen(product: product),
+                      ),
+                    );
                   },
                 ),
               );

@@ -76,14 +76,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductMainState> {
   }
 
   void _updateData(ProductUpdateEvent event, Emitter emit) async {
-    final result = await repository.storeProduct(event.product);
+    final result = await repository.updateProduct(event.product);
     if (result) {
       emit(state.copyWith(
-          status: ProductStatus.successDelete,
+          status: ProductStatus.successUpdate,
           message: event.product.productId));
     } else {
       emit(state.copyWith(
-          status: ProductStatus.errorDelete,
+          status: ProductStatus.errorUpdate,
           message: "Product Yangilanmadi ! Iltimos Qayta urinib Ko'ring"));
     }
   }
