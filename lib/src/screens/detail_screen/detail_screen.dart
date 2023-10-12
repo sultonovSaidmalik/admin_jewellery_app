@@ -1,10 +1,12 @@
+import 'package:admin_jewellery_app/src/common/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'components/back_and_page_view_button.dart';
 import 'components/share_buttons.dart';
 import 'components/widget_text.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  final Product product;
+  const DetailScreen({super.key, required this.product});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -15,23 +17,23 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
 
-          Stack(
+           Stack(
             children: [
               /// PageView Images
-              WidgetPageView(),
+              WidgetPageView(product: widget.product,),
               /// Share Buttons and Back button
-              ShareAndBackButton(),
+              const ShareAndBackButton(),
             ],
           ),
           /// Texts Product Texts
-          WidgetTexts(),
+          WidgetTexts(product: widget.product,),
         ],
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/product_model.dart';
 import '../../../common/styles/text_style.dart';
 class WidgetTexts extends StatelessWidget {
-  const WidgetTexts({super.key});
+  final Product product;
+  const WidgetTexts({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +14,16 @@ class WidgetTexts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// Text Ring Name
-          const Row(
+          const Text(
+            'Product name',
+            style: Styles.w700_25,
+          ),
+          const SizedBox(height: 15),
+           Row(
             children: [
               Text(
-                '2,99 Carat Diamond\nRing',
-                style: Styles.w700,
+                '${product.productName}',
+                style: Styles.w500_19,
               ),
             ],
           ),
@@ -24,8 +31,8 @@ class WidgetTexts extends StatelessWidget {
 
           /// Explanation Text
           const Text(
-            'Explanation',
-            style: Styles.w500_19,
+            'Description',
+            style: Styles.w700_25,
           ),
           const SizedBox(height: 15),
 
@@ -34,9 +41,9 @@ class WidgetTexts extends StatelessWidget {
           SizedBox(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).width * 0.4,
-            child: const SingleChildScrollView(
+            child:  SingleChildScrollView(
               child: Text(
-                'Natural diamond mine turns into a more sparkling "diamond" when cut in a special form with a larger cut surface and a dome-like bottom. The difference between diamond and diamond is that diamond has less cut surface and the lower part is flat.',
+                "${product.productDescription}",
                 overflow: TextOverflow.visible,
                 style: Styles.w400,
               ),
@@ -45,15 +52,15 @@ class WidgetTexts extends StatelessWidget {
 
           ///Price and Texts
 
-          const Column(
+           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Price',
-                style: Styles.w400_20,
+              const Text(
+                "Price",
+                style: Styles.w700_25,
               ),
               Text(
-                '10.750 ₺',
+                "${(product.productPrice ?? 0)} so'm",
                 style: Styles.w700_28,
               )
             ],

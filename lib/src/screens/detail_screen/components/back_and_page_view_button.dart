@@ -1,4 +1,5 @@
 
+import 'package:admin_jewellery_app/src/common/models/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,8 @@ class MyBackButton extends StatelessWidget {
 
 
 class WidgetPageView extends StatefulWidget {
-  const WidgetPageView({super.key});
+  final Product product;
+  const WidgetPageView({super.key, required this.product});
 
   @override
   State<WidgetPageView> createState() => _WidgetPageViewState();
@@ -51,20 +53,20 @@ class _WidgetPageViewState extends State<WidgetPageView> {
                 index = value;
               });
             },
-            children: const [
-              Image(
-                image: AssetImage("assets/images/img.png"),
-                fit: BoxFit.cover,
+            children: widget.product.images
+                .map(
+                  (image) => ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
+                child: Image(
+                  image: NetworkImage(image),
+                  fit: BoxFit.cover,
+                ),
               ),
-              Image(
-                image: AssetImage("assets/images/img_2.png"),
-                fit: BoxFit.cover,
-              ),
-              Image(
-                image: AssetImage("assets/images/img.png"),
-                fit: BoxFit.cover,
-              ),
-            ],
+            )
+                .toList(),
           ),
         ),
         Padding(

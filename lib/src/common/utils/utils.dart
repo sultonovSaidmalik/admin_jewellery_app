@@ -23,17 +23,5 @@ class AppUtils {
 
   static Future<Uint8List?> imgFromGallery() => PickerUtils.imgFromGallery();
 
-  static Future<Uint8List?> imgFromCamera() async {
-    if (kIsWeb) {
-      return null;
-    } else {
-      XFile? image = await _picker.pickImage(
-        source: ImageSource.camera,
-        imageQuality: 50,
-      );
-
-      if (image == null) return null;
-      return await image.readAsBytes();
-    }
-  }
+  static Future<Uint8List?> imgFromCamera() => PickerUtils.imgFromCamera();
 }

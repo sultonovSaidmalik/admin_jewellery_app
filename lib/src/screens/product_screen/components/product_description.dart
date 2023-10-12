@@ -11,16 +11,16 @@ class WidgetsProductDescription extends StatelessWidget {
     return   Expanded(
       flex: 5,
       child: Padding(
-        padding: EdgeInsets.only(left: 15),
+        padding: const EdgeInsets.only(left: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 /// Uzuk name
                  Text(
-                   "name",
+                   name,
                    style: Styles.w400,
                 ),
               ],
@@ -31,13 +31,13 @@ class WidgetsProductDescription extends StatelessWidget {
               description,
                style: Styles.w300,
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
              Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 /// Price
                 Text(
-                  "$price \$",
+                  "$price  so'm",
                   style: Styles.w700_20,
                 ),
 

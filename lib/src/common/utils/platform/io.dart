@@ -17,4 +17,15 @@ class PickerUtils {
 
     return await image.readAsBytes();
   }
+
+  static Future<Uint8List?> imgFromCamera() async {
+    XFile? image = await _picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 50,
+    );
+
+    if (image == null) return null;
+
+    return await image.readAsBytes();
+  }
 }
