@@ -19,7 +19,7 @@ class ProductCreateEvent extends ProductEvent {
   final String genderType;
   final num price;
 
-  const ProductCreateEvent( {
+  const ProductCreateEvent({
     required this.name,
     required this.description,
     required this.files,
@@ -29,5 +29,24 @@ class ProductCreateEvent extends ProductEvent {
   });
 
   @override
-  List<Object?> get props => [name, description, files, price, type, genderType];
+  List<Object?> get props =>
+      [name, description, files, price, type, genderType];
+}
+
+class ProductDeleteEvent extends ProductEvent {
+  final String productId;
+
+  const ProductDeleteEvent({required this.productId});
+
+  @override
+  List<Object?> get props => [];
+}
+
+class ProductUpdateEvent extends ProductEvent {
+  final Product product;
+
+  const ProductUpdateEvent({required this.product});
+
+  @override
+  List<Object?> get props => [product];
 }

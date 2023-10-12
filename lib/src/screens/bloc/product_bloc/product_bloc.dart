@@ -19,6 +19,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductMainState> {
       (event, emit) => switch (event) {
         ProductGetDataEvent e => _getAllData(e, emit),
         ProductCreateEvent e => _createData(e, emit),
+        ProductDeleteEvent e => _deleteData(e, emit),
+        ProductUpdateEvent e => _updateData(e, emit),
         _ => () {},
       },
     );
@@ -26,8 +28,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductMainState> {
 
   void _getAllData(ProductGetDataEvent event, Emitter emit) async {
     final data = await repository.getAllProduct();
-    if(data!= null) {
-      emit(state.copyWith(products: data));
+    if (data != null) {
+      emit(state.copyWith(products: data, status: ProductStatus.successData));
+    }else {
+      emit(state.copyWith(status: ProductStatus.errorData, message: "Malumot o'lishda xatolik Qaytaddan urinib ko'ring"));
     }
   }
 
@@ -52,7 +56,35 @@ class ProductBloc extends Bloc<ProductEvent, ProductMainState> {
     final result = await repository.storeProduct(product);
     if (result) {
       emit(state.copyWith(status: ProductStatus.successCreate));
+    } else {
+      emit(state.copyWith(
+          status: ProductStatus.errorCreate,
+          message: "Product Qo'shilmadi Iltimos Qayta urinib koring!"));
     }
-    emit(state.copyWith(status: ProductStatus.errorCreate));
+  }
+
+  void _deleteData(ProductDeleteEvent event, Emitter emit) async {
+    final result = await repository.deleteProduct(event.productId);
+    if (result) {
+      emit(state.copyWith(
+          status: ProductStatus.successDelete, message: event.productId));
+    } else {
+      emit(state.copyWith(
+          status: ProductStatus.errorDelete,
+          message: "Product O'chirilmadi ! Iltimos Qayta urinib Ko'ring"));
+    }
+  }
+
+  void _updateData(ProductUpdateEvent event, Emitter emit) async {
+    final result = await repository.storeProduct(event.product);
+    if (result) {
+      emit(state.copyWith(
+          status: ProductStatus.successDelete,
+          message: event.product.productId));
+    } else {
+      emit(state.copyWith(
+          status: ProductStatus.errorDelete,
+          message: "Product Yangilanmadi ! Iltimos Qayta urinib Ko'ring"));
+    }
   }
 }

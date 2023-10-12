@@ -41,6 +41,21 @@ class ProductRepository extends Repository {
     }
   }
 
+
+
+
+  @override
+  Future<bool> deleteProduct(String productId) async {
+    try {
+      await
+      _storage.child(Folder.products.name).child(productId).remove();
+      return true;
+    } catch (e, s) {
+      print(e);
+      print(s);
+      return false;
+    }
+  }
   @override
   Future<String> storePicture(Uint8List file) async {
     final image = _st.ref(Folder.images.name).child("image_${DateTime.now().toIso8601String()}.jpg" );
@@ -48,6 +63,7 @@ class ProductRepository extends Repository {
     await task.whenComplete(() {});
     return image.getDownloadURL();
   }
+
 }
 
 enum Folder {

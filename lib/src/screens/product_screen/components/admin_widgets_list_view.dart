@@ -23,8 +23,9 @@ class AdminProductWidgets extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  DetailScreen(product: product,),
-
+                      builder: (context) => DetailScreen(
+                        product: product,
+                      ),
                     ),
                   );
                 },
@@ -45,6 +46,18 @@ class AdminProductWidgets extends StatelessWidget {
                       ),
                     ],
                   ),
+                  deletePress: () {
+                    context.read<ProductBloc>().add(
+                        ProductDeleteEvent(productId: product.productId ?? ""));
+                  },
+                  updatePress: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => UpdateScreen(),
+                    //   ),
+                    // );
+                  },
                 ),
               );
             },
@@ -71,12 +84,16 @@ class AdminProductWidgets extends StatelessWidget {
 
 class ProductWidget extends StatelessWidget {
   final void Function() onPress;
+  final void Function() deletePress;
+  final void Function() updatePress;
   final Widget widget;
 
   const ProductWidget({
     super.key,
     required this.onPress,
     required this.widget,
+    required this.deletePress,
+    required this.updatePress,
   });
 
   @override
@@ -90,7 +107,7 @@ class ProductWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               spacing: 5,
               flex: 1,
-              onPressed: (e) {},
+              onPressed: (e) => deletePress(),
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
               icon: Icons.delete,
@@ -106,7 +123,7 @@ class ProductWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               spacing: 5,
               flex: 1,
-              onPressed: (e) {},
+              onPressed: (e) => updatePress(),
               backgroundColor: const Color(0xFF7BC043),
               foregroundColor: Colors.white,
               icon: Icons.edit,

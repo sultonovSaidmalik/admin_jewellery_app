@@ -10,4 +10,6 @@ abstract class Repository {
   Future<bool> storeProduct(Product product);
 
   Future<String> storePicture(Uint8List file);
+
+  Future<bool> deleteProduct(String productId);
 }
