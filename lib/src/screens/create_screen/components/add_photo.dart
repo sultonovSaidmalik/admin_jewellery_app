@@ -61,11 +61,16 @@ class _AddPhotosState extends State<AddPhotos> {
                       )
                     : Stack(
                         children: [
-                          Image.memory(
-                            widget.imageTwo!,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
+                          ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(14),
+                            ),
+                            child: Image.memory(
+                              widget.imageTwo!,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           Container(
                             width: double.infinity,
@@ -110,11 +115,16 @@ class _AddPhotosState extends State<AddPhotos> {
                       )
                     : Stack(
                         children: [
-                          Image.memory(
-                            widget.imageThree!,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
+                          ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(14),
+                            ),
+                            child: Image.memory(
+                              widget.imageThree!,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           Container(
                             width: double.infinity,
@@ -153,37 +163,42 @@ class _AddPhotosState extends State<AddPhotos> {
             ),
             child: widget.imageOne == null
                 ? const Center(
-              child: Icon(
-                Icons.add_a_photo,
-                size: 50,
-                color: Colors.white,
-              ),
-            )
+                    child: Icon(
+                      Icons.add_a_photo,
+                      size: 50,
+                      color: Colors.white,
+                    ),
+                  )
                 : Stack(
-              children: [
-                Image.memory(
-                  widget.imageOne!,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                Container(
-                  width: double.infinity,
-                  color: Colors.black12,
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      IconButton(
-                        onPressed: widget.closeOne,
-                        icon: const Icon(Icons.highlight_remove),
-                        color: Colors.white,
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(14),
+                        ),
+                        child: Image.memory(
+                          widget.imageOne!,
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        color: Colors.black12,
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              onPressed: widget.closeOne,
+                              icon: const Icon(Icons.highlight_remove),
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
           ),
         ),
       ],
