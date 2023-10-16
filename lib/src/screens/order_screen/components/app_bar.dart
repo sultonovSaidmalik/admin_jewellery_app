@@ -4,7 +4,13 @@ import '../../../common/styles/text_style.dart';
 
 class AppBarTextWidgets extends StatelessWidget {
   final void Function()? onPressed;
-  const AppBarTextWidgets({super.key, required this.onPressed});
+  final String text;
+
+  const AppBarTextWidgets({
+    super.key,
+    required this.onPressed,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +19,18 @@ class AppBarTextWidgets extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            "Admin Product",
-            style: Styles.w700_25,
-          ),
-          IconButton(
-            onPressed: onPressed,
-            icon: const Icon(
-              Icons.shopping_cart_rounded,
+          GestureDetector(
+            onTap: onPressed,
+            child: const Icon(
+              Icons.arrow_back_ios_new,
               color: Colors.white,
             ),
           ),
+           Text(
+            text,
+            style: Styles.w700_25,
+          ),
+          const SizedBox.shrink()
         ],
       ),
     );

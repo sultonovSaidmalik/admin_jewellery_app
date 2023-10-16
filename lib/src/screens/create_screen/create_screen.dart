@@ -26,7 +26,7 @@ class _CreateScreensState extends State<CreateScreens> with CreateMixin {
       backgroundColor: const Color(0xFF000000),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

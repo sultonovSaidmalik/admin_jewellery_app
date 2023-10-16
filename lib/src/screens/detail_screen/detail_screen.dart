@@ -6,6 +6,7 @@ import 'components/widget_text.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
+
   const DetailScreen({super.key, required this.product});
 
   @override
@@ -13,27 +14,29 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-
-
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-
-           Stack(
+          Stack(
             children: [
               /// PageView Images
-              WidgetPageView(product: widget.product,),
+              WidgetPageView(
+                product: widget.product,
+              ),
+
               /// Share Buttons and Back button
               const ShareAndBackButton(),
             ],
           ),
+
           /// Texts Product Texts
-          WidgetTexts(product: widget.product,),
+          WidgetTexts(
+            product: widget.product,
+          ),
         ],
       ),
     );

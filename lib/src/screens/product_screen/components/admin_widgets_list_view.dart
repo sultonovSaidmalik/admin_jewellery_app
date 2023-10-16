@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../../../common/models/product_model.dart';
 import '../../bloc/product_bloc/product_bloc.dart';
 import '../../detail_screen/detail_screen.dart';
 import '../../update_screen/update_screen.dart';

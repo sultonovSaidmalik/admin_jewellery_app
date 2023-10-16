@@ -15,12 +15,12 @@ mixin CreateMixin on State<CreateScreens> {
   TextEditingController descriptionController = TextEditingController();
 
   void _createProduct(BuildContext context) {
-    if(nameController.text.isEmpty ) return AppUtils.msg(context, "Maxsultni nomi kiritilmadi");
-    if(descriptionController.text.isEmpty) return AppUtils.msg(context, "Maxsultni tavsifi kiritilmadi");
-    if(priceController.text.isEmpty) return AppUtils.msg(context, "Maxsultni summasi kiritilmadi");
-    if(_imageOne == null) return AppUtils.msg(context, "Maxsultni Birinchi rasimi kiritilmadi");
-    if(_imageTwo == null) return AppUtils.msg(context, "Maxsultni Ikkinchi rasimi kiritilmadi");
-    if(_imageThree == null) return AppUtils.msg(context, "Maxsultni Uchinchi rasimi kiritilmadi");
+    if(nameController.text.isEmpty ) return AppUtils.msg(context, "Maxsulotni nomi kiritilmadi");
+    if(descriptionController.text.isEmpty) return AppUtils.msg(context, "Maxsulotni tavsifi kiritilmadi");
+    if(priceController.text.isEmpty) return AppUtils.msg(context, "Maxsulotni summasi kiritilmadi");
+    if(_imageOne == null) return AppUtils.msg(context, "Maxsulotni Birinchi rasmi kiritilmadi");
+    if(_imageTwo == null) return AppUtils.msg(context, "Maxsulotni Ikkinchi rasmi kiritilmadi");
+    if(_imageThree == null) return AppUtils.msg(context, "Maxsulotni Uchinchi rasmi kiritilmadi");
     context.read<ProductBloc>().add(ProductCreateEvent(
           name: nameController.text.trim(),
           description: descriptionController.text.trim(),

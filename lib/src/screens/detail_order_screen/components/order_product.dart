@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../../common/styles/text_style.dart';
 
-class WidgetsProductDescription extends StatelessWidget {
+class OrderProductDescription extends StatelessWidget {
   final String name;
-  final String description;
   final num price;
+  final num totalPrice;
+  final num count;
 
-  const WidgetsProductDescription({
+  const OrderProductDescription({
     super.key,
     required this.name,
-    required this.description,
     required this.price,
+    required this.count, required this.totalPrice,
   });
 
   @override
@@ -27,24 +28,39 @@ class WidgetsProductDescription extends StatelessWidget {
               children: [
                 /// Uzuk name
                 Text(
-                  name,
-                  style: Styles.w400,
+                  "Name : $name",
+                  style: Styles.w700,
                 ),
               ],
             ),
             const SizedBox(height: 5),
-            /// Description
+            /// Count Product
             Text(
-              description,
-              style: Styles.w300,
+              "Zakaz soni : $count",
+              style: Styles.w700,
             ),
             const SizedBox(height: 5),
+            /// Price
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+             /// One Price
+                Text(
+                  "Dona : $price  so'm",
+                  style: Styles.w700_20,
+                ),
+
+                // /// Add To Basket
+                // ButtonAddToBasket(onTap: (){},),
+              ],
+            ),
+            /// Total Product
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 /// Price
                 Text(
-                  "$price  so'm",
+                  "Jami : $totalPrice  so'm",
                   style: Styles.w700_20,
                 ),
 
