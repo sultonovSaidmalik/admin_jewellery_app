@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:admin_jewellery_app/src/screens/bloc/product_bloc/product_bloc.dart';
 import 'package:admin_jewellery_app/src/screens/create_screen/components/widget_dropdown_button.dart';
 import 'package:flutter/material.dart';

@@ -4,11 +4,8 @@ import 'platform/stub.dart'
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class AppUtils {
-  static final ImagePicker _picker = ImagePicker();
-
   AppUtils._();
 
   static void msg(BuildContext context, String message,

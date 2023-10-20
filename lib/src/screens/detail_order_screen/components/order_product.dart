@@ -23,50 +23,28 @@ class OrderProductDescription extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                /// Uzuk name
-                Text(
-                  "Name : $name",
-                  style: Styles.w700,
-                ),
-              ],
+            /// Product Name
+            Text(
+              "Name : $name",
+              style: Styles.w700,
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 3),
             /// Count Product
             Text(
               "Zakaz soni : $count",
               style: Styles.w700,
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 3),
             /// Price
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-             /// One Price
-                Text(
-                  "Dona : $price  so'm",
-                  style: Styles.w700_20,
-                ),
-
-                // /// Add To Basket
-                // ButtonAddToBasket(onTap: (){},),
-              ],
+            Text(
+              "Dona : $price  so'm",
+              style: Styles.w700_20,
             ),
+            const SizedBox(height: 3),
             /// Total Product
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                /// Price
-                Text(
-                  "Jami : $totalPrice  so'm",
-                  style: Styles.w700_20,
-                ),
-
-                // /// Add To Basket
-                // ButtonAddToBasket(onTap: (){},),
-              ],
+            Text(
+              "Jami : $totalPrice  so'm",
+              style: Styles.w700_20,
             ),
           ],
         ),
