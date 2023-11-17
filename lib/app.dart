@@ -1,4 +1,5 @@
 import 'package:admin_jewellery_app/src/common/repository/product_repository/product_repository.dart';
+import 'package:admin_jewellery_app/src/screens/bloc/order/order_bloc.dart';
 import 'package:admin_jewellery_app/src/screens/product_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,11 @@ class AdminJewelleryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductBloc(repository: ProductRepository())..add(const ProductGetDataEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ProductBloc(repository: ProductRepository())..add(const ProductGetDataEvent())),
+        BlocProvider(create: (context) => OrderBloc()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(useMaterial3: true),

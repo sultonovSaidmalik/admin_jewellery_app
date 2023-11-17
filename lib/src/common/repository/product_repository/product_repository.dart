@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -7,20 +6,26 @@ import 'package:admin_jewellery_app/src/common/repository/repository.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../folder.dart';
+
 class ProductRepository extends Repository {
   late final FirebaseDatabase _db;
   late final FirebaseStorage _st;
 
   late final _storage = _db.ref("app");
 
-  ProductRepository() : _db = FirebaseDatabase.instance, _st = FirebaseStorage.instance;
+  ProductRepository()
+      : _db = FirebaseDatabase.instance,
+        _st = FirebaseStorage.instance;
 
   @override
   Future<List<Product>?> getAllProduct() async {
     try {
       final data = await _storage.child(Folder.products.name).get();
-      return data.children.map((e) => Product.fromJson(jsonDecode(jsonEncode(e.value)))).toList();
-    }catch(e, s) {
+      return data.children
+          .map((e) => Product.fromJson(jsonDecode(jsonEncode(e.value))))
+          .toList();
+    } catch (e, s) {
       print(e);
       print(s);
       return null;
@@ -45,7 +50,7 @@ class ProductRepository extends Repository {
   Future<bool> updateProduct(Product product) async {
     try {
       final folder =
-      _storage.child(Folder.products.name).child(product.productId!);
+          _storage.child(Folder.products.name).child(product.productId!);
       await folder.update(product.toJson());
       return true;
     } catch (e, s) {
@@ -55,14 +60,10 @@ class ProductRepository extends Repository {
     }
   }
 
-
-
-
   @override
   Future<bool> deleteProduct(String productId) async {
     try {
-      await
-      _storage.child(Folder.products.name).child(productId).remove();
+      await _storage.child(Folder.products.name).child(productId).remove();
       return true;
     } catch (e, s) {
       print(e);
@@ -70,17 +71,14 @@ class ProductRepository extends Repository {
       return false;
     }
   }
+
   @override
   Future<String> storePicture(Uint8List file) async {
-    final image = _st.ref(Folder.images.name).child("image_${DateTime.now().toIso8601String()}.jpg" );
+    final image = _st
+        .ref(Folder.images.name)
+        .child("image_${DateTime.now().toIso8601String()}.jpg");
     final task = image.putData(file);
     await task.whenComplete(() {});
     return image.getDownloadURL();
   }
-
-}
-
-enum Folder {
-  products,
-  images,
 }

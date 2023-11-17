@@ -1,10 +1,11 @@
+
 import 'product_model.dart';
 
 class CartItem {
-  String? id;
-  Product? product;
-  int? productCount;
-  num? totalPrice;
+  String id;
+  Product product;
+  int productCount;
+  num totalPrice;
 
   CartItem({
     required this.id,
@@ -15,14 +16,14 @@ class CartItem {
 
   factory CartItem.fromJson(Map<String, Object?> json) => CartItem(
       id : json["id"] as String,
-      product : json["product"] as Product,
+      product : Product.fromJson(json["product"] as Map<String, Object?>),
       productCount : json["productCount"] as int,
       totalPrice : json["totalPrice"] as num,
   );
 
   Map<String, Object?> toJson() => {
     "id" : id,
-    "product" : product,
+    "product" : product.toJson(),
     "productCount" : productCount,
     "totalPrice" : totalPrice,
   };

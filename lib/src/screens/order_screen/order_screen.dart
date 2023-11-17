@@ -1,11 +1,24 @@
+import 'package:admin_jewellery_app/src/screens/bloc/order/order_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../detail_order_screen/detail_order_screen.dart';
 import 'components/app_bar.dart';
 import 'components/user_list_view_widget.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
 
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+
+  @override
+  void didChangeDependencies() {
+    context.read<OrderBloc>().add(GetOrderEvent());
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

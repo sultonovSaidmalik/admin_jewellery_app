@@ -1,16 +1,15 @@
 import 'cart_model.dart';
+import 'product_model.dart';
 
 class Order {
   String? orderId;
-  String? userId;
   String? userName;
   String? userPhone;
-  Cart? cart;
+  CartModel? cart;
   num? totalPrice;
 
   Order({
     required this.orderId,
-    required this.userId,
     required this.userName,
     required this.userPhone,
     required this.cart,
@@ -18,26 +17,24 @@ class Order {
   });
 
   factory Order.fromJson(Map<String, Object?> json) => Order(
-      orderId : json["orderId"] as String,
-      userId : json["userId"] as String,
-      userName : json["userName"] as String,
-      userPhone : json["userPhone"] as String,
-      cart : json["cart"] as Cart,
-      totalPrice : json["totalPrice"] as num,
-  );
+        orderId: json["orderId"] as String,
+        userName: json["userName"] as String,
+        userPhone: json["userPhone"] as String,
+        cart: CartModel.fromJson(json["cart"] as Map<String, Object?>),
+        totalPrice: json["totalPrice"] as num,
+      );
 
   Map<String, Object?> toJson() => {
-    "orderId" : orderId,
-    "userId" : userId,
-    "userName" : userName,
-    "userPhone" : userPhone,
-    "cart" : cart,
-    "totalPrice" : totalPrice,
-  };
+        "orderId": orderId,
+        "userName": userName,
+        "userPhone": userPhone,
+        "cart": cart!.toJson(),
+        "totalPrice": totalPrice,
+      };
 
   @override
   String toString() {
-    return 'Order{orderId: $orderId, userId: $userId, userName: $userName, userPhone: $userPhone, cart: $cart, totalPrice: $totalPrice}';
+    return 'Order{orderId: $orderId, userName: $userName, userPhone: $userPhone, cart: $cart, totalPrice: $totalPrice}';
   }
 
   @override
@@ -46,7 +43,6 @@ class Order {
       other is Order &&
           runtimeType == other.runtimeType &&
           orderId == other.orderId &&
-          userId == other.userId &&
           userName == other.userName &&
           userPhone == other.userPhone &&
           cart == other.cart &&
@@ -55,9 +51,42 @@ class Order {
   @override
   int get hashCode =>
       orderId.hashCode ^
-      userId.hashCode ^
       userName.hashCode ^
       userPhone.hashCode ^
       cart.hashCode ^
       totalPrice.hashCode;
+
+  String toOrderString() {
+    String products = "";
+    for (final item in cart!.items) {
+      products += """
+      ${productToString(item.product)}
+      Soni  : ${item.productCount},
+      Summasi  : ${item.totalPrice},
+      """;
+    }
+    return """
+Buyurma Berildi !
+
+Buyurmachining Ismi : $userName,
+Buyurmachining Telefon Raqami : $userPhone,
+
+Maxsulotlar : 
+  $products
+
+
+Jami Summa : $totalPrice,
+    """;
+  }
+
+  String productToString(Product product) {
+    return """
+        Nomi : ${product.productName},
+        Malumoti : ${product.productDescription},
+        Turi : ${product.productType},
+        Jins : ${product.genderType},
+        Rasmlari : ${product.images},
+        Narxi : ${product.productPrice},
+    """;
+  }
 }
